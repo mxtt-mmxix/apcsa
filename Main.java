@@ -1,115 +1,102 @@
 import java.util.ArrayList;
 
 public class Main {
-    /*
-     * Date: 3/2/21 Aim: How can we use Sequential/Linear searches with arrays and
-     * ArrayLists in a Java program?
-     * 
-     * Do Now: Read the following.
-     * 
-     * Sequential or linear search is the only method that can be used to find a
-     * value in unsorted data. It usually starts at the first element and walks
-     * through the array or list until it finds the value it is looking for and
-     * returns the index it found it at, or it loops until the end of the array or
-     * list and then it returns a -1 to show that it didn’t find the value in the
-     * array or list.
-     * 
-     * Binary searches can only be used when the data set is sorted.
-     */
 
     /*
-     * 1. Translate the method below which uses an Array of ints to an ArrayList of
-     * Integers. Explain what the method sequentialSearch does.
+     * Date: 3/3/21 Aim: How can we use a binary search to find a target value in an
+     * array or list of elements?
+     * 
+     * Do Now: Evalute the following method binarySearch and explain how it works.
      */
-    public static int sequentialSearch(ArrayList<Integer> elements, int target) {
-        for (int j = 0; j < elements.size(); j++) {
-            if (elements.get(j) == target) {
-                return j;
+    public static int binarySearch(int[] elements, int target) {
+        int left = 0;
+        int right = elements.length - 1;
+        while (left <= right) {
+            int middle = (left + right) / 2;
+            if (target < elements[middle]) {
+                right = middle - 1;
+            } else if (target > elements[middle]) {
+                left = middle + 1;
+            } else {
+                return middle;
             }
         }
         return -1;
-    }
+    }// closes method
 
-    /*
-     * 2. Write the implementation for the method where which searches for a double
-     * value in a list of Doubles. If the Double value is found the index of that
-     * value is returned otherwise -1 is returned. Due to standard error ranges with
-     * double/Double values a threshold, delta must be used to determine if the
-     * value is found and valid. To determine if a value is within the exceptable
-     * range: find the difference between the absolute value of the magicNumber and
-     * the Double at a specific index. i.e. delta = 0.01, if magicNumber is 3.45 and
-     * the value at index in realNumbers list is 3.455 then we found a Double within
-     * the accetable range since .005 is less than 0.01. 
+    /**
+     * The method firsts assigns left to the first index and right to the index of
+     * the last element. 'left' and 'right' represent and the left and right bounds
+     * of section of the array we're examining. We enter the while loop if the left
+     * bound is less than or equal to the right bound. 'middle' will store the index
+     * of the middle element of the current section. If the target value is less
+     * that or more than the target, we elminate the other half of the array by
+     * adjusting the left and right bounds accordingly. We repeat this pocess until
+     * we find the value in question or determine it does not exist.
      */
-    public static int where(double magicNumber, ArrayList<Double> realNumbers, double delta) {
-        //implementation 
-        for (int i = 0; i < realNumbers.size(); i++) {
-            if (Math.abs(magicNumber - realNumbers.get(i)) < delta) {
-                return i;
+
+    public static int binarySearch(String[] elements, String target) {
+        int left = 0;
+        int right = elements.length - 1;
+        while (left <= right) {
+            int middle = (left + right) / 2;
+            if (target.compareTo(elements[middle]) < 0) {
+                right = middle - 1;
+            } else if (target.compareTo(elements[middle]) > 0) {
+                left = middle + 1;
+            } else {
+                return middle;
             }
         }
         return -1;
-    }
-
-    /*
-     * 3. Write the implemenation for the method findTitle which searches a list of
-     * Book objects and searches for a specified title. If the title is found the
-     * index of that Book object is returned. If the title is not found in any of
-     * the Book objects -1 is returned.
-     */
-    public static int findTitle(String Title, ArrayList<Book> bookList) {
-        for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getTitle().equals(Title)) {
-                return i;
-            }
-        }
-        return -1;
-    }
+    }// closes method
 
     public static void main(String[] args) {
-        // Question 1
-        ArrayList<Integer> numArray = new ArrayList<Integer>();
-        numArray.add(3);
-        numArray.add(-2);
-        numArray.add(9);
-        numArray.add(38);
-        numArray.add(-23);
+        int[] arr1 = { -20, 3, 15, 81, 432 };
 
-        System.out.println("Tests of sequentialSearch");
-        System.out.println(sequentialSearch(numArray, 3));
-        System.out.println(sequentialSearch(numArray, 9));
-        System.out.println(sequentialSearch(numArray, -23));
-        System.out.println(sequentialSearch(numArray, 99));
+        // 1. How many times will the loop iterate before returning the index of 15?
+        // 1
+        int index = binarySearch(arr1, 15);
+        System.out.println(index);
 
-        // Question 2
-        System.out.println("Tests of sequentialSearch for where method");
-        ArrayList<Double> doubleList = new ArrayList<Double>();
-        doubleList.add(2.45);
-        doubleList.add(3.6505);
-        doubleList.add(5.15);
-        doubleList.add(1.42);
-        doubleList.add(1.4105);
-        System.out.println(where(1.41, doubleList, 0.01));
-        System.out.println(where(2.45, doubleList, 0.001));
-        System.out.println(where(10.5, doubleList, 0.1));
+        // 2. How many times will the loop iterate before returning the index of -20?
+        // 2
+        index = binarySearch(arr1, -20);
+        System.out.println(index);
 
-        // Question 3
-        Book b1 = new Book("Lord of the Rings", "J.R.R. Tolkein");
-        Book b2 = new Book("I know why the caged bird sings", "Maya Angelou");
-        Book b3 = new Book("The Weary Blues", "Langston Hughes");
-        Book b4 = new Book("Basic Economics", "Thomas Sowell");
+        // 3. How many times will the loop iterate before returning the index of 432?
+        // 3
+        index = binarySearch(arr1, 432);
+        System.out.println(index);
 
-        System.out.println("Tests of sequentialSearch for findTitle method");
-        ArrayList<Book> myBooks = new ArrayList<Book>();
-        myBooks.add(b1);
-        myBooks.add(b2);
-        myBooks.add(b3);
-        myBooks.add(b4);
-        System.out.println(findTitle("The Weary Blues", myBooks));
+        // 4. How many times will the loop iterate before returning the index of 53?
+        // 3
+        index = binarySearch(arr1, 53);
+        System.out.println(index);
 
-        // Question 4: What is a Binary Search? Give an example of when it would be
-        // appropriate to conduct a binary search.
-        /** 
-         * A binary search involves dividing the array in half until the desired element is found, which each subsequent division getting closer to the desired element. It only works on sorted arrays, however. */
+        /*-------Part 2--------
+        Write a bineary search method that returns the index of an element
+        given as the 2nd param. If the element isn't found return -1.
+        Note: the compareTo(String obj) method compares the String the method is being called upon to the String param. and returns a negative number if the this String is less than the String param. ex.
+        String s1 = "apple";
+        s1.compareTo("banana"); returns a negative number since apple comes before banana alphabetically. This method helps us write the search method since the array of Strings is sorted alphabetically.*/
+
+        String[] arr2 = { "apple", "banana", "cherry", "kiwi", "melon" };
+        // test when the target is in the middle 
+        index = binarySearch(arr2, "cherry");
+        System.out.println(index);
+
+        // test when the target is the first item in the array index =
+        binarySearch(arr2, "apple");
+        System.out.println(index);
+
+        // test when the target is in the array - last 
+        index = binarySearch(arr2, "melon");
+
+        System.out.println(index);
+        // test when the target is not in the array index = 
+        binarySearch(arr2, "pear");
+        System.out.println(index);
+
     } // closes main method
 }
