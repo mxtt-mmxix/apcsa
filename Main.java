@@ -1,102 +1,88 @@
 import java.util.ArrayList;
 
 public class Main {
-
-    /*
-     * Date: 3/3/21 Aim: How can we use a binary search to find a target value in an
-     * array or list of elements?
-     * 
-     * Do Now: Evalute the following method binarySearch and explain how it works.
-     */
-    public static int binarySearch(int[] elements, int target) {
-        int left = 0;
-        int right = elements.length - 1;
-        while (left <= right) {
-            int middle = (left + right) / 2;
-            if (target < elements[middle]) {
-                right = middle - 1;
-            } else if (target > elements[middle]) {
-                left = middle + 1;
-            } else {
-                return middle;
+    public static void selectionSort(int[] elements) {
+        for (int j = 0; j < elements.length - 1; j++) {
+            int minIndex = j;
+            /**
+             * A nested for loop is for a for loop that executes each iteration of the
+             * parent for loop. This mean if the parent for loop executes x amount of times
+             * and the nested for loop executes y amount of times. The body of the nested
+             * for loop executes x * y amount of times.
+             */
+            for (int k = j + 1; k < elements.length; k++) {
+                /**
+                 * This conditional checks whether the current element is smaller than the
+                 * smallest known element. If it is smaller than the smallest known element,
+                 * then it becomes the new smallest known element by having its index assigned
+                 * to minIndex. If not, we carry on and check the next element.
+                 */
+                if (elements[k] < elements[minIndex]) {
+                    minIndex = k;
+                }
             }
+            /**
+             * These three lines of code swaps the smallest element found with the element
+             * at j.
+             */
+            int temp = elements[j];
+            elements[j] = elements[minIndex];
+            elements[minIndex] = temp;
         }
-        return -1;
-    }// closes method
+    }
 
-    /**
-     * The method firsts assigns left to the first index and right to the index of
-     * the last element. 'left' and 'right' represent and the left and right bounds
-     * of section of the array we're examining. We enter the while loop if the left
-     * bound is less than or equal to the right bound. 'middle' will store the index
-     * of the middle element of the current section. If the target value is less
-     * that or more than the target, we elminate the other half of the array by
-     * adjusting the left and right bounds accordingly. We repeat this pocess until
-     * we find the value in question or determine it does not exist.
-     */
+    public static void selectionSort(ArrayList<Integer> elements) {
 
-    public static int binarySearch(String[] elements, String target) {
-        int left = 0;
-        int right = elements.length - 1;
-        while (left <= right) {
-            int middle = (left + right) / 2;
-            if (target.compareTo(elements[middle]) < 0) {
-                right = middle - 1;
-            } else if (target.compareTo(elements[middle]) > 0) {
-                left = middle + 1;
-            } else {
-                return middle;
+        for (int i = 0; i < elements.size(); i++) {
+
+            int minIndex = i;
+
+            for (int j = i; j < elements.size(); j++) {
+
+                if (elements.get(j) < elements.get(minIndex)) {
+                    minIndex = j;
+                }
             }
+
+            elements.add(i, elements.get(minIndex));
+            elements.remove(minIndex);
+
         }
-        return -1;
-    }// closes method
+    }
 
     public static void main(String[] args) {
-        int[] arr1 = { -20, 3, 15, 81, 432 };
+        int[] arr1 = { 3, 86, -20, 14, 40 };
+        // System.out.println(Arrays.toString(arr1));
+        selectionSort(arr1);
+        // System.out.println(Arrays.toString(arr1));
 
-        // 1. How many times will the loop iterate before returning the index of 15?
-        // 1
-        int index = binarySearch(arr1, 15);
-        System.out.println(index);
-
-        // 2. How many times will the loop iterate before returning the index of -20?
-        // 2
-        index = binarySearch(arr1, -20);
-        System.out.println(index);
-
-        // 3. How many times will the loop iterate before returning the index of 432?
-        // 3
-        index = binarySearch(arr1, 432);
-        System.out.println(index);
-
-        // 4. How many times will the loop iterate before returning the index of 53?
-        // 3
-        index = binarySearch(arr1, 53);
-        System.out.println(index);
-
-        /*-------Part 2--------
-        Write a bineary search method that returns the index of an element
-        given as the 2nd param. If the element isn't found return -1.
-        Note: the compareTo(String obj) method compares the String the method is being called upon to the String param. and returns a negative number if the this String is less than the String param. ex.
-        String s1 = "apple";
-        s1.compareTo("banana"); returns a negative number since apple comes before banana alphabetically. This method helps us write the search method since the array of Strings is sorted alphabetically.*/
-
-        String[] arr2 = { "apple", "banana", "cherry", "kiwi", "melon" };
-        // test when the target is in the middle 
-        index = binarySearch(arr2, "cherry");
-        System.out.println(index);
-
-        // test when the target is the first item in the array index =
-        binarySearch(arr2, "apple");
-        System.out.println(index);
-
-        // test when the target is in the array - last 
-        index = binarySearch(arr2, "melon");
-
-        System.out.println(index);
-        // test when the target is not in the array index = 
-        binarySearch(arr2, "pear");
-        System.out.println(index);
-
-    } // closes main method
+        /*
+         * 1. Examine the conditional statment within the nested (inner) loop. Explain
+         * what the conditional statement accomplishes in this part of the program
+         * 
+         * 2. After iterating through the outer loop once... temp = 3; elements[0] = -20
+         * elements[minIndex] which is elements[2] = 3. Explain the meaning of these 3
+         * lines of code. Why do they appear after the inner loop?
+         * 
+         * 
+         * 3. What will the array arr1 hold after we evaluate selectionSort(int[ ]
+         * elements) for j = 0, k = 1, k = 2, k = 3, k = 4 (1 iteration of the outer
+         * loop and 4 iterations of the inner loop - the total number of iterations
+         * needed to complete the inner loop)?
+         * 
+         * 
+         * 4. What will the array arr1 hold after we evaluate selectionSort(int[ ]
+         * elements) for j = 1, k = 1, k = 2, k = 3, k = 4 (2nd iteration of the outer
+         * loop and 4 iterations of the inner loop - the total number of iterations
+         * needed to complete the inner loop)? { -20, 3, 86, 14, 40 }
+         * 
+         * 
+         * 5. In general, what can we say about a selection sort algorithm?
+         * 
+         * 
+         * 
+         * 
+         * 6. HW - Rewrite the program using lists instead of arrays.
+         */
+    }
 }
