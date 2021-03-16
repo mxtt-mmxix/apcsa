@@ -1,56 +1,45 @@
 import java.util.*;
 
 class Main {
-    /*Date: 3/5/21
-    Aim: How can we examine and trace through an insertion sort algorithm using an array of integers?
-    Do Now:
-    1. Examine the following method insertionSort.
-    a. What is the purpose of the temp variable?
-    // Temporarily stores the value at index j for use in a later comparison.
-    b. The purpose of possibleIndex = j probably isn't clear until you trace through the code. Read the full algorithm then explain the meaning of this line of code.
-    c. Why does the outer for loop index variable start at 1 and not 0?
-    // Because we call elements[possibleIndex - 1]
-    d. Explain the meaning of possibleIndex > 0 && temp < elements[possibleIndex - 1]
-    // Checks whether the possible index is more than zero and whether it is less than the element that preceeds it.
-    e. Explain the meaning of elements[possibleIndex] = elements[possibleIndex - 1]; possibleIndex--;
-    // Assigns the element at the current index to the element at the preceeding index. Then move the current index back to modify the preceeding index.
-    f. Explain the meaning of elements[possibleIndex] = temp;*/
-    // Reassign the current index to the value stored in temp.
-    public static void insertionSort(int[] elements) {
-        for (int j = 1; j < elements.length; j++) {
-            int temp = elements[j];
-            int possibleIndex = j;
-            while (possibleIndex > 0 && temp < elements[possibleIndex - 1]) {
-                elements[possibleIndex] = elements[possibleIndex - 1];
-                possibleIndex--;
-            } //closes inner loop
-            elements[possibleIndex] = temp;
-        } //closes outer loop
-    }//closes method
 
     public static void main(String[] args) {
 
-        /*2. What do you expect the array will print after the insertion sort is complete? Explain*/
+        /*
+        Do Now:
+        1. Create an array of names ("Strings") called studentsArray. You can use an initializer list or assign them one by one. Add at least 6 elements (even number only). */
+        String[] studentsArray = { "Raphael", "Donatello", "Leonardo", "Michealangelo", "John", "Mary" };
 
-        int[] arr2 = { 3, 86, -20, 14, 40 };
-        System.out.println(Arrays.toString(arr2));
-        insertionSort(arr2);
-        System.out.println("_____________After insertion sort______________");
-        System.out.println(Arrays.toString(arr2));
-
-        /*3. Edit the for loop header by changing j < elements.length to j < 2,
-        *Make a precition about what the array values will be.
-        [3, 86, -20, 14, 40]
-        
-        4. Change the for loop condition to j < 3, make a predicition about what the array values will be.
-        [-20, 3, 86, 14, 40]
-        
-        5. Change the for loop condition to j < 4, make a predcition about what the array values will be.
-        [-20, 3, 14, 86, 40]
+        /*
+        What if we wanted to place the roster of students into a seating chart? i.e. 2d-array*
+        To declare and initialize a 2D array use the data type to be stored in the data structure i.e. String, int, double, Player object etc.
+        followed by [ ][ ] variableName = new DataType[row][column];
         */
 
-        //6. Explain how an insertion sort works.
-        // Insertion sort works by iterating through the entire array moving smaller elements backwars as neccessary to sort the array.
+        // String[][] seatingChart;
+
+        /*2. The line of code above declares the 2D array but does not initialize it. Either edit the line of code above or add a line that properly initializes the 2D array. */
+
+        /* seatingChart = new String[6][5]*/;
+
+        /*3. Initialize a new seatingChart using the initializer list. reference 8.1.5 in csawesome textbook. */
+        String[][] seatingChart = { studentsArray, { "Bob", "Jeff", "Tiffany", "Brandon", "Jerry", "Silvester" } };
+
+        // create arrays
+        int[][] testInfo = new int[2][3];
+        // initialize the array elements
+        testInfo[0][0] = 85;
+        testInfo[0][1] = 90;
+        testInfo[0][2] = 95;
+        testInfo[1][0] = 75;
+        testInfo[1][1] = 67;
+        testInfo[1][2] = 85;
+
+        /* 4. Reassign each test score to an appropriate value .
+        5. How many tests were taken?
+        6 tests were taken
+        6. How many students are there?
+        There are 6 students
+        */
 
     }//closes main method
 }//closes class
