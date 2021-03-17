@@ -2,43 +2,84 @@ import java.util.*;
 
 class Main {
 
+    public static double getAverage(int[][] a) {
+        double total = 0;
+        int value = 0;
+        for (int row = 0; row < a.length; row++) {
+            for (int col = 0; col < a[0].length; col++) {
+                value = a[row][col];
+                total = total + value;
+            }
+        }
+        return total / (a.length * a[0].length);
+    }
+
     public static void main(String[] args) {
 
         /*
-        Do Now:
-        1. Create an array of names ("Strings") called studentsArray. You can use an initializer list or assign them one by one. Add at least 6 elements (even number only). */
-        String[] studentsArray = { "Raphael", "Donatello", "Leonardo", "Michealangelo", "John", "Mary" };
-
-        /*
-        What if we wanted to place the roster of students into a seating chart? i.e. 2d-array*
-        To declare and initialize a 2D array use the data type to be stored in the data structure i.e. String, int, double, Player object etc.
-        followed by [ ][ ] variableName = new DataType[row][column];
+        Date: 3/17/21
+        Aim: How can we traverse 2D arrays?
+        
+        Do Now: Complete the following self-check in practice it BJP4 Self-Check 7.31: arrayCodeTracing2d.
+        https://practiceit.cs.washington.edu/problem/view/bjp4/chapter7/s31-arrayCodeTracing2d
+        _____________________________________________________________________
+        Explain what the following code segment will print:
+        
         */
 
-        // String[][] seatingChart;
+        for (int r = 0; r < 4; r++) {
+            for (int col = 0; col < 3; col++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
 
-        /*2. The line of code above declares the 2D array but does not initialize it. Either edit the line of code above or add a line that properly initializes the 2D array. */
+        /*
+        
+        ***
+        ***
+        ***
+        ***
+        
+        ______________________________________________________________________
+        Now let's consider the code segment above in the form of a 2D array.
+        
+        */
 
-        /* seatingChart = new String[6][5]*/;
+        System.out.println();
 
-        /*3. Initialize a new seatingChart using the initializer list. reference 8.1.5 in csawesome textbook. */
-        String[][] seatingChart = { studentsArray, { "Bob", "Jeff", "Tiffany", "Brandon", "Jerry", "Silvester" } };
+        String[][] stars = { { "*", "*", "*" }, { "*", "*", "*" }, { "*", "*", "*" }, { "*", "*", "*" } };
 
-        // create arrays
-        int[][] testInfo = new int[2][3];
-        // initialize the array elements
-        testInfo[0][0] = 85;
-        testInfo[0][1] = 90;
-        testInfo[0][2] = 95;
-        testInfo[1][0] = 75;
-        testInfo[1][1] = 67;
-        testInfo[1][2] = 85;
+        /*
+        How can we define the length of the array with respect to its rows? (with an expression)
+        stars.length
+        
+        How can we define the length of the array with respect to its columns? (with an expression)
+        stars[0].length
+        
+        _________________________________________________________________________
+        Explore:
+        Write a code segment that will print the elements of the array stars.
+        */
 
-        /* 4. Reassign each test score to an appropriate value .
-        5. How many tests were taken?
-        6 tests were taken
-        6. How many students are there?
-        There are 6 students
+        for (String[] starRow : stars) {
+            for (String star : starRow) {
+                System.out.print(star);
+            }
+            System.out.println();
+        }
+        /*
+        _________________________________________________________________________
+        Explore part 2:
+        Explain the meaning of the getAverage(int [ ][ ] a) method(in great detail!).
+        It iterates through every column of every column adding the value of every entry towards a sum. Then it returns that value of the sum divided by number of rows multplied by the columns.
+        */
+
+        int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
+        System.out.println(getAverage(matrix));
+
+        /*
+        H.W. Complete 7.33 and 7.34 in PracticeIt submit screenshots with this submission
         */
 
     }//closes main method
