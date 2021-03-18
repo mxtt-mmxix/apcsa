@@ -2,85 +2,68 @@ import java.util.*;
 
 class Main {
 
-    public static double getAverage(int[][] a) {
-        double total = 0;
-        int value = 0;
-        for (int row = 0; row < a.length; row++) {
-            for (int col = 0; col < a[0].length; col++) {
-                value = a[row][col];
-                total = total + value;
-            }
-        }
-        return total / (a.length * a[0].length);
-    }
-
     public static void main(String[] args) {
 
-        /*
-        Date: 3/17/21
-        Aim: How can we traverse 2D arrays?
-        
-        Do Now: Complete the following self-check in practice it BJP4 Self-Check 7.31: arrayCodeTracing2d.
-        https://practiceit.cs.washington.edu/problem/view/bjp4/chapter7/s31-arrayCodeTracing2d
-        _____________________________________________________________________
-        Explain what the following code segment will print:
-        
-        */
+        //Date: 3/18/21
+        //Aim: How can we traverse 2D arrays
+        /*Do Now: Declare and initialize a 2d array of test scores. The 2d array should have 4 rows and 3 columns with the following scores.
+        Student 1: 90, 93, 91
+        Student 2: 92, 88, 86
+        Student 3: 75, 80, 85
+        Student 4: 88, 90, 92 */
 
-        for (int r = 0; r < 4; r++) {
-            for (int col = 0; col < 3; col++) {
-                System.out.print("*");
+        int[][] testScores = { { 90, 93, 91 }, { 92, 88, 86 }, { 75, 80, 85 }, { 88, 90, 92 } };
+
+        for (int[] student : testScores) {
+            for (int score : student) {
+                System.out.println(score + ' ');
             }
             System.out.println();
         }
 
-        /*
+        //1. What is the meaning of the rows in the context of the 2d array from the do now?
+        // A Row will represent the set of all test scores for a particular student.
+
+        //2. What is the meaning of the columns in the contest of the 2d array from the do now?
+        // A columns will represent the set of all test scores for a particular test.
+
+        //3. What are the scores of the first student?
+        // { 90, 93, 91 }
+
+        //4. What are the scores from the 3rd test?
+        // { 91, 86, 85, 92 }
+
+        /*5. Assuming this is an AP class each test should be scaled up by a factor of 10%. Write a method
+        public int[][] APgrades(int [][] scores)
         
-        ***
-        ***
-        ***
-        ***
-        
-        ______________________________________________________________________
-        Now let's consider the code segment above in the form of a 2D array.
-        
-        */
+        which takes a 2d array of integers and returns a 2d array of integers with corresponding values 10% larger than the initial data structure. */
 
-        System.out.println();
-
-        String[][] stars = { { "*", "*", "*" }, { "*", "*", "*" }, { "*", "*", "*" }, { "*", "*", "*" } };
-
-        /*
-        How can we define the length of the array with respect to its rows? (with an expression)
-        stars.length
-        
-        How can we define the length of the array with respect to its columns? (with an expression)
-        stars[0].length
-        
-        _________________________________________________________________________
-        Explore:
-        Write a code segment that will print the elements of the array stars.
-        */
-
-        for (String[] starRow : stars) {
-            for (String star : starRow) {
-                System.out.print(star);
-            }
-            System.out.println();
-        }
-        /*
-        _________________________________________________________________________
-        Explore part 2:
-        Explain the meaning of the getAverage(int [ ][ ] a) method(in great detail!).
-        It iterates through every column of every column adding the value of every entry towards a sum. Then it returns that value of the sum divided by number of rows multplied by the columns.
-        */
-
-        int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
-        System.out.println(getAverage(matrix));
-
-        /*
-        H.W. Complete 7.33 and 7.34 in PracticeIt submit screenshots with this submission
-        */
+        //6. A 2d Array is an array of arrays...We can use for-each loops to traverse 2d arrays as well. What should this look like? Try recreating the method from above using an enhanced for loop.
 
     }//closes main method
+
+    public double[][] APgrades(double[][] scores) {
+
+        double[][] newScores = new double[scores.length][scores[0].length];
+
+        for (int i = 0; i < scores.length; i++) {
+            for (int j = 0; j < scores.length; j++) {
+                newScores[i][j] = scores[i][j] * 1.1;
+            }
+        }
+
+        return newScores;
+
+    }
+
+    public void _APgrades(double[][] scores) {
+
+        for (double student[] : scores) {
+            for (double score : student) {
+                System.out.println(score + ' ');
+            }
+            System.out.println();
+        }
+    }
+
 }//closes class
