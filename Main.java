@@ -1,67 +1,80 @@
 public class Main {
 
     public static void main(String[] args) {
+        //Date:
+        //Aim: How can we write algorithms with 2D Arrays in a java program?
 
-        //Date: 3/18/21
-        //Aim: How can we traverse 2D arrays
-        /*Do Now: Declare and initialize a 2d array of test scores. The 2d array should have 4 rows and 3 columns with the following scores.
-        Student 1: 90, 93, 91
-        Student 2: 92, 88, 86
-        Student 3: 75, 80, 85
-        Student 4: 88, 90, 92 */
+        /*Do Now:
+        1. Take the following 2D array traversal (countEvens method) which uses nested for loops and translate it to an equivalent set of code using enhanced for loop (for-each) loops. Remember a 2D array is an array of arrays. Imagine the first enhanced for loop pulls an inividiaul row out (a single array) and the inner loop pulls out individual elements from said array. */
+        int[][] numbersArray = { { 1, 2, 3, 4 }, { 2, 3, 4, 5 }, { 3, 4, 5, 6 }, { 4, 5, 6, 7 }, { 5, 6, 7, 8 } };
+        System.out.println(countEvens(numbersArray)); //should return 10
 
-        int[][] testScores = { { 90, 93, 91 }, { 92, 88, 86 }, { 75, 80, 85 }, { 88, 90, 92 } };
+        /*2. Write the implementation for the method search which returns a boolean value if the target String value is found in a 2D array of Strings. The 2D array represents a seating chart of names (Strings). The method should return true if the value is found and false otherwise. */
+        String[][] chart = { { "Brian", "Stef", "Betsy" }, { "Tammy", "Bart", "Thomas" },
+                { "Susan", "Scott", "Justin" } };
 
-        for (int[] student : testScores) {
-            for (int score : student) {
-                System.out.println(score + ' ');
-            }
-            System.out.println();
-        }
+        System.out.println(search(chart, "Bart")); //should return true
+        System.out.println(search(chart, "Jake")); //should return false
 
-        //1. What is the meaning of the rows in the context of the 2d array from the do now?
-        // A Row will represent the set of all test scores for a particular student.
-
-        //2. What is the meaning of the columns in the contest of the 2d array from the do now?
-        // A columns will represent the set of all test scores for a particular test.
-
-        //3. What are the scores of the first student?
-        // { 90, 93, 91 }
-
-        //4. What are the scores from the 3rd test?
-        // { 91, 86, 85, 92 }
-
-        /*5. Assuming this is an AP class each test should be scaled up by a factor of 10%. Write a method
-        public int[][] APgrades(int [][] scores)
-        
-        which takes a 2d array of integers and returns a 2d array of integers with corresponding values 10% larger than the initial data structure. */
-
-        //6. A 2d Array is an array of arrays...We can use for-each loops to traverse 2d arrays as well. What should this look like? Try recreating the method from above using an enhanced for loop.
+        /*3. Given a 2D array of boolean values, return the percentage of elements
+        (in decimal form) that are set to true. For your return statement think about what expression represents the total number of elements in the 2D array. */
+        boolean[][] values = { { true, false }, { false, true }, { true, true }, { true, false }, { false, true } };
+        System.out.println(percentTrue(values)); //should return 0.6 
 
     }//closes main method
 
-    public double[][] APgrades(double[][] scores) {
+    /*
+    public static int countEvens(int[][] numArray) {
+        int count = 0;
+        for (int r = 0; r < numArray.length; r++) {
+            for (int c = 0; c < numArray[0].length; c++) {
+                if (numArray[r][c] % 2 == 0) {
+                    count++;
+                }
+            } //closes inner loop
+        } //closes outer loop
+        return count;
+    }//closes method*/
 
-        double[][] newScores = new double[scores.length][scores[0].length];
+    public static int countEvens(int[][] arr) {
 
-        for (int i = 0; i < scores.length; i++) {
-            for (int j = 0; j < scores.length; j++) {
-                newScores[i][j] = scores[i][j] * 1.1;
+        int count = 0;
+
+        for (int[] arr_i : arr) {
+            for (int i : arr_i) {
+                if (i % 2 == 0)
+                    count++;
             }
         }
 
-        return newScores;
-
+        return count;
     }
 
-    public void _APgrades(double[][] scores) {
-
-        for (double student[] : scores) {
-            for (double score : student) {
-                System.out.println(score + ' ');
+    public static boolean search(String[][] seatingChart, String name) {
+        for (String[] strArr : seatingChart) {
+            for (String str : strArr) {
+                if (str.equals(name))
+                    return true;
             }
-            System.out.println();
         }
-    }
+
+        return false;
+
+    }//closes method
+
+    public static double percentTrue(boolean[][] matrix) {
+
+        int trueCount = 0;
+
+        for (boolean[] row : matrix) {
+            for (int i = 0; i < row.length; i++) {
+                if (row[i])
+                    trueCount++;
+            }
+        }
+
+        return (double) trueCount / (matrix[0].length * matrix.length);
+
+    }//closes method 
 
 }//closes class
