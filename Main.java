@@ -1,48 +1,26 @@
 public class Main {
 
     public static void main(String[] args) {
-        //Date: 4/6/21
-        //Aim: How can we apply parent and child classes to a java program?
+        //Date: 4/7/21 
+        //Aim: How can we apply the concept of inheritance when writing a full subclass in java? 
 
-        //Do Now: Create a new repl.it folder for Unit 9 - Inheritance along with a new lesson 73. 
+        //Do Now: Copy and Paste the following into a new repl.it
 
-        //copy and paste the following into the main method 
-        Performer julia = new Performer("Julia", 26, "Rockaway");
+        //main class - main method 
 
-        Musician jake = new Musician("Jake", 28, "Bayside", "Trumpet");
+        Person p1 = new Person("Tom", 31);
+        System.out.println(p1.toString());
 
-        Performer susan = new Musician("Susan", 24, "Rosedale", "Sax");
+        Employee e1 = new Employee("Tom", 31, "Teacher");
+        System.out.println(e1.toString());
 
-        System.out.println(julia.getName());
-        System.out.println(julia.getAge());
-        System.out.println(julia.getHomeTown());
+        /*1. Override the toString method from the Person class (Super class)
+        in the Employee class so that it includes the job title as well.*/
 
-        System.out.println(jake.getName());
-        System.out.println(jake.getAge());
-        System.out.println(jake.getInstrument());
-        jake.playInstrument();
-
-        System.out.println(susan.getName());
-        System.out.println(susan.getAge());
-        System.out.println(susan.getHomeTown());
-
-        /*1. Explain which methods can be called on a Performer object.*/
-        // The getName(), getAge(), and getHomeTown() methods can be called on a Perfromer object.
-
-        /*2. Explain which methods can be called on a Musician object.*/
-        // The getName(), getAge(), getHomeTown(), getInstrument(), and playInstrument() methods can be called on a Perfromer object.
-
-        /*3. Explain which methods can be called on a Comedian object. */
-        // The getName(), getAge(), getHomeTown(), getJoke() methods can be called on a Perfromer object.
-
-        /*4. susan.getInstrument(); Why does this line cause an error? */
-        // This line creates an error because susan is of type Performer which does not have a getInstrument() method.
-
-        /*5. Which class is the parent class and which is the child class? What is another set of terms to describe this relationship?*/
-        // Performer is the parent class, Musician and Comedian are child classes. Another set of terms are super-sub classes.
-
-        /*6. Describe the is-a relationship compared to the has-a relationship.*/
-        // A Musician a Performer, but a Performer isn't necessarily is Musician.
+        /*2. Write a new class called Student which is-a subclass of the Person class. 
+        Add an additional private instance variable gradeLevel. How many constructors will you need? 
+        Add a method getGradeLevel which returns a Student object's gradeLevel. 
+        Override the toString method to include the Students gradeLevel as well. */
 
     }//closes method 
 
