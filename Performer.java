@@ -1,13 +1,13 @@
 //Performer class
+
 public class Performer {
+
     private String name;
     private int age;
-    private String homeTown;
 
-    public Performer(String Name, int Age, String HT) {
+    public Performer(String Name, int Age) {
         name = Name;
         age = Age;
-        homeTown = HT;
     }
 
     public String getName() {
@@ -18,7 +18,11 @@ public class Performer {
         return age;
     }
 
-    public String getHomeTown() {
-        return homeTown;
+    public void practice() {
+        System.out.println("Honing my craft");
+    }
+
+    public void perform() {
+        System.out.println("Performing for an audience");
     }
 }
