@@ -8,27 +8,19 @@ public class Main {
     //Polymorphism: To have many forms. In Java it means that the method that gets called at run-time (when the code is run) depends on the type of the object at run-time.
 
     public static void main(String[] args) {
-        Shape[] shapes = { new Shape(), new Rectangle(), new Square(), new Circle() };
-        for (Shape s : shapes) {
-            s.what();
-            System.out.print(" ");
-        } //closes loop to print Shapes 
-
-        Shape s1 = new Rectangle();
-
-        System.out.println();
-
-        /*
-        s1.info(); Why does this line result in an error message? 
-        How can this be fixed? (Fix it once you know!)
-        s1.info() results in an error messahe because s1 is stored as a Shape which does not have an info() method.
-        */
-
-        ((Rectangle) s1).info();
-        (new Square()).info();
-        (new Circle()).info();
-
-        /*Add an info method to each subclass. Instantiate a Shape object but uses the constructor from a different subclass each time i.e. Rectangle, Square etc. */
-    }//closes main method 
+        Sandwich burger = new Sandwich("Cheeseburger", 2.75);
+        Sandwich club = new Sandwich("Club Sandwich", 2.75);
+        Salad spinachSalad = new Salad("Spinach Salad", 1.25);
+        Salad coleslaw = new Salad("Coleslaw", 1.25);
+        Drink orange = new Drink("Orange Soda", 1.25);
+        Drink cap = new Drink("Cappuccino", 3.50);
+        Trio trio1 = new Trio(burger, spinachSalad, orange);
+        System.out.println(
+                "It should print Cheeseburger/Spinach Salad/Orange Soda Trio and it prints: " + trio1.getName());
+        System.out.println("It should print 4.0 and it prints: " + trio1.getPrice());
+        Trio trio2 = new Trio(club, coleslaw, cap);
+        System.out.println("It should print Club Sandwich/Coleslaw/Capuccino Trio and it prints: " + trio2.getName());
+        System.out.println("It should print 6.25 and it prints: " + trio2.getPrice());
+    }
 
 }//closes class
